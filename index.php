@@ -37,9 +37,13 @@
             'vote' => 2,
             'distance_to_center' => 50
         ],
-
     ];
-
+    $park = $_GET("parking")
+    if ($park) {
+        $filtered = array_filter($hotels, function($hotel) {
+            return $hotel['parking'];
+        })};
+        var_dump ($filtered);
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +55,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
+
+    <form action="./index.php" method="GET">
+        <label for="parking">Parking</label>
+        <input type="checkbox" id="parking" name="parking" value="1">
+    </form>
     <table class="table">
         <thead>
             <tr>
@@ -62,11 +71,11 @@
         </thead>
         <tbody>
             <?php
-                foreach($hotels as $name => $value){
-                    echo "<tr>" . "<td>" . $value['name'] . "</td>";
-                    echo "<td>" . $value['description'] . "</td>";
-                    echo "<td>" . $value['vote'] . "</td>";
-                    echo "<td>" . $value['distance_to_center'] . "</td>" . "</tr>";
+                foreach($hotels as $name){
+                    echo "<tr>" . "<td>" . $name['name'] . "</td>";
+                    echo "<td>" . $name['description'] . "</td>";
+                    echo "<td>" . $name['vote'] . "</td>";
+                    echo "<td>" . $name['distance_to_center'] . "</td>" . "</tr>";
                 };
             ?>
         </tbody>
